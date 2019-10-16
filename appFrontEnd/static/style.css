@@ -666,6 +666,18 @@ input:checked + .slider:before {
   width: 80%;
 }
 
+/* Modal Content1*/
+.modal-content1 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+}
+
+
+
+
 /* The Close Button */
 .close {
   color: #aaaaaa;

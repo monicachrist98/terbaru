@@ -14,11 +14,7 @@
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search report.." title="Type in a name">
 
-
-
           <center>
-          
-            
                           <table id="list">
                             <tr>
                               <th>Request Name</th>
@@ -42,13 +38,16 @@
                             <td>{{taskSPV['requestOrganisasi']}}</td>
                             <td>{{taskSPV['requestTanggal']}}</td>
                             <td>{{taskSPV['requestDeadline']}}</td>
-            
+
+          <div class="button">
           <td><form action="/detailRequest" method="POST">
           <button class="submit" name = "buttonDetail" value="{{taskSPV['requestId']}}">Select
-          </button>
-              </form>
-    <button id="{{taskSPV['requestId']}}" class="submit" name="buttonReject" value="{{taskSPV['requestId']}}" onclick="alertReject(this.id)">Reject</button>
+          </button></form>
+          </div> 
 
+          <div class="button">
+          <button id="{{taskSPV['requestId']}}" class="submit" name="buttonReject" value="{{taskSPV['requestId']}}" onclick="alertReject(this.id)">Reject</button>
+          </div>
                         <div id="modal3{{taskSPV['requestId']}}" class="modal">
 
                         <!-- Modal content -->
@@ -57,47 +56,48 @@
                           <p style="text-align: center;"><strong>REJECT CONFIRMATION</strong></p>
                           <p style="text-align: left;">User         : {{taskSPV.userNama}}</p>
                           <p style="text-align: left;">Request Code : {{taskSPV.requestId}} </p>
-                          <p style="text-align: left;">Title        : {{taskSPV.requestJudul}}</p> <br><br>
+                          <p style="text-align: left;">Title        : {{taskSPV.requestJudul}}</p> <br>
                         <p> Keterangan: <p>
-                        <textarea name="keteranganReject" style="height:200px"></textarea>    
+                        <textarea name="keteranganReject" style="height:200px"></textarea><br>  
                                 
                                   <center>
-                                    <form action ='/rejectRequest' method = 'POST'>
-                                     <button  class = "submit" value ="{{taskSPV['requestId']}}" name="btnYes"> YES </button>
-                                    </form>
-                                
-                                  <br>
-
+                                    <div class="colBut">
+                                      <form action ='/rejectRequest' method = 'POST'>
+                                       <button  class = "submit" value ="{{taskSPV['requestId']}}" name="btnYes"> YES </button>
+                                      </form>
+                                    </div>
                                      <button  class = "submitRed" value ="{{taskSPV['requestId']}}" onclick="closeModal3()"> NO </button>
                                   </center>
                                   </div>
                               </div> 
 
-
     <br>
         
             {% if taskSPV['requestPrioritas'] == '1' %}
-            <button id="{{taskSPV['requestId']}}" class="submit" name="buttonPriority" value="{{taskSPV['requestId']}}" onclick="alertPrioritas(this.id)">Priority</button>
+            <div class="button">
+            <button id="{{taskSPV['requestId']}}" class="submit" name="buttonPriority" value="{{taskSPV['requestId']}}" onclick="alertPrioritas(this.id)">Priority</button></div>
 
                                   <div id="modal2{{taskSPV['requestId']}}" class="modal">
 
                                   <!-- Modal content -->
                                   <div class="modal-content">
                                     <span class="close" onclick="closeModal2()">&times;</span>
-                                    <p> Are you sure? </p>
-                                         
-                                <form action ="/prioritasReq" method = 'POST'>
+                                    <p> Are you sure make this report priority? </p> <br>
+
                                   <center>
-                                     <button  class = "submit" value ="{{taskSPV['requestId']}}" name="btnYes"> YES </button>
-                                </form>
-                                  <br>
+                                  <div class="colBut">
+                                    <form action ="/prioritasReq" method = 'POST'>
+                                       <button  class = "submit" value ="{{taskSPV['requestId']}}" name="btnYes"> YES </button>
+                                  </form>
+                                  </div>       
+                              
 
+                                  <div class="colBut">
                                      <button  class = "submitRed" value ="{{taskSPV['requestId']}}" onclick="closeModal2()"> NO </button>
-                                  </center>
-                                    
                                   </div>
+                                  </center>
 
-                              </div> 
+                                  </div> 
                               {% else %}   
                               <!-- <p> Request prioritas </p> -->
                               <form action="/undoPrioritas" method='POST'>
@@ -149,10 +149,6 @@ function click_process(processId){
   show_modal('modal'+processId);
   //alert('modal'+processId);
 }
-
-
-
-
 
 //buat button prioritas
 
